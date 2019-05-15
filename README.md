@@ -1,13 +1,11 @@
-![WiseTracker SDK](http://www.wisetracker.co.kr/wp-content/uploads/2017/11/Wisetracker.CI_.300-60.png)
-
-[![Version](https://img.shields.io/cocoapods/v/WiseTracker.svg?style=flat)](https://cocoapods.org/pods/WiseTracker)
-[![License](https://img.shields.io/cocoapods/l/WiseTracker.svg?style=flat)](https://cocoapods.org/pods/WiseTracker)
-[![Platform](https://img.shields.io/cocoapods/p/WiseTracker.svg?style=flat)](https://cocoapods.org/pods/WiseTracker)
+[![Version](https://img.shields.io/cocoapods/v/DOT.svg?style=flat)](https://cocoapods.org/pods/DOT)
+[![License](https://img.shields.io/cocoapods/l/DOT.svg?style=flat)](https://cocoapods.org/pods/DOT)
+[![Platform](https://img.shields.io/cocoapods/p/DOT.svg?style=flat)](https://cocoapods.org/pods/DOT)
 
 # Index
 * [DOT](./README.md#DOT)
-	* [Installation](./README.md#DOT_INSTALL)
-		* [SDK Download](./README.md#DOT_SDK_Download)
+	* [SDK 다운로드 및 설치](./README.md#DOT_INSTALL)
+		* [SDK 다운로드](./README.md#DOT_SDK_DOWNLOAD)
 		* [Key 등록](./README.md#DOT_KEY)
 	* [기본 분석 적용](./README.md#DOT_BASE)
 		* [SDK init](./README.md#DOT_INIT)
@@ -42,19 +40,24 @@
 		* [Log Revenue 분석](./README.md#Log-Revenue-분석)		
 # DOT
 
-### <a id="DOT_INSTALL"></a> Installation
+### <a id="DOT_INSTALL"></a> SDK 다운로드 및 설치
 
-##### <a id="DOT_SDK_Download"></a> - SDK Download
-Android 프로젝트 app/build.gradle 파일 dependencies 항목에 아래와 같이 추가
+##### <a id="DOT_SDK_DOWNLOAD"></a> - SDK 다운로드
+- XCode CocoaPad 환경에서 SDK 다운로드 방법
+XCode 프로젝트 파일중 Podfile 파일에 다음과 같이 SDK를 추가합니다
 
-```gradle
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar']) 
-    ....
-    implementation 'com.sdk.wisetracker.base:base_module_test:0.0.3' // BASE
-    implementation 'com.sdk.wisetracker.dot:dot_module_test:0.0.3'   // DOT
-}
 ```
+pod 'DOT' ~> 'x.x.x'
+```
+
+Podfile 에 해당라인을 추가한 후 Terminal 프로그램을 실행하여 다음의 명령을 수행합니다
+```
+cmd> pod install
+```
+
+만약 Cocoapad 환경의 프로젝트가 아닌 경우에는, 아래의 Github 링크에서 SDK Library 파일을 다운로드 가능합니다
+다운로드한 Framework 파일을 XCode 프로젝트에서 참조 가능하도록 설정 하시기 바랍니다
+Wisetracker Mobile Analytics SDK 다운로드 받기
 
 ##### <a id="DOT_KEY"></a> - Key 등록
 Android 프로젝트의 app/res/values/strings.xml 파일에 제공받은 App Analytics Key 정보를 추가
