@@ -1,6 +1,8 @@
-[![N|Solid](http://www.wisetracker.co.kr/wp-content/uploads/2018/10/WT_300_55_black.png)](http://www.wisetracker.co.kr)
+![WiseTracker SDK](http://www.wisetracker.co.kr/wp-content/uploads/2017/11/Wisetracker.CI_.300-60.png)
 
-[ ![Download](https://api.bintray.com/packages/tracker/maven/SDK_V1/images/download.svg?version=21.3.3) ](https://bintray.com/beta/#/tracker/maven/SDK_V1?tab=overview)
+[![Version](https://img.shields.io/cocoapods/v/WiseTracker.svg?style=flat)](https://cocoapods.org/pods/WiseTracker)
+[![License](https://img.shields.io/cocoapods/l/WiseTracker.svg?style=flat)](https://cocoapods.org/pods/WiseTracker)
+[![Platform](https://img.shields.io/cocoapods/p/WiseTracker.svg?style=flat)](https://cocoapods.org/pods/WiseTracker)
 
 # Index
 * [DOT](./README.md#DOT)
