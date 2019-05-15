@@ -6,7 +6,7 @@
 * [DOT](./README.md#DOT)
 	* [SDK 다운로드 및 설치](./README.md#DOT_INSTALL)
 		* [SDK 다운로드](./README.md#DOT_SDK_DOWNLOAD)
-		* [Key 등록](./README.md#DOT_KEY)
+		* [SDK 설치](./README.md#DOT_infoplist)
 	* [기본 분석 적용](./README.md#DOT_BASE)
 		* [SDK init](./README.md#DOT_INIT)
 		* [방문 및 페이지 분석](./README.md#--방문-및-페이지-분석)
@@ -59,19 +59,28 @@ cmd> pod install
 다운로드한 Framework 파일을 XCode 프로젝트에서 참조 가능하도록 설정 하시기 바랍니다
 Wisetracker Mobile Analytics SDK 다운로드 받기
 
-##### <a id="DOT_KEY"></a> - Key 등록
-Android 프로젝트의 app/res/values/strings.xml 파일에 제공받은 App Analytics Key 정보를 추가
+##### <a id="DOT_infoplist"></a> - SDK설치
+XCode 프로젝트의 info.plist 파일에 제공받은 App Analytics Key 정보를 추가합니다
+info.plist 파일을 open할때 list로 보기 가 아니라 source로 보기를 선탁하신뒤, 제공받으신 Key를 Ctrl+V 하시면 됩니다
+제공받은 Key값은 아래의 예시와 같이 xml 형태를 가지고 있는 데이터 입니다
 ```xml
-<string-array name="dotAuthorizationKey">
-    <item name="usdMode">2</item>
-    <item name="domain">http://collector.naver.wisetracker.co.kr</item> // DOT END POINT
-    <item name="serviceNumber">103</item>
-    <item name="expireDate">14</item>
-    <item name="isDebug">false</item>
-    <item name="isInstallRetention">true</item>
-    <item name="isFingerPrint">true</item>
-    <item name="accessToken">access_token_string</item>
-</string-array>
+<key>dotAuthorizationKey</key>
+<dict>
+    <key>domain</key>
+    <string>http://dev-collector001-ncl.nfra.io/collector</string>
+    <key>serviceNumber</key>
+    <string>103</string>
+    <key>expireDate</key>
+    <string>14</string>
+    <key>isDebug</key>
+    <string>true</string>
+    <key>isInstallRetention</key>
+    <string>true</string>
+    <key>isFingerPrint</key>
+    <string>true</string>
+    <key>accessToken</key>
+    <string></string>
+</dict>
 ```
 
 ### <a id="DOT_BAS"></a> 기본 분석 적용
