@@ -43,7 +43,7 @@
 ### <a id="DOT_INSTALL"></a> SDK 다운로드 및 설치
 
 ##### <a id="DOT_SDK_DOWNLOAD"></a> - SDK 다운로드
-- XCode CocoaPad 환경에서 SDK 다운로드 방법
+###### XCode CocoaPad 환경에서 SDK 다운로드 방법
 XCode 프로젝트 파일중 Podfile 파일에 다음과 같이 SDK를 추가합니다
 
 ```
