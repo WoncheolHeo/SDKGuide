@@ -124,55 +124,93 @@ XCode 프로젝트의 각 View 화면별 viewWillAppear() 함수와 viewWillDisp
     [DOT onStartPage];
 }
 
-- (void)viewWillDisppear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [DOT onStopPage];
 } 
 ```
 
 ### <a id="DOT_HYBRID"></a> Hybrid 앱 분석 방법
-Hybrid 앱의 경우 앱 내에서 WebView 를 사용하여 웹 컨텐츠를 서비스 하기도 합니다. 이와 같이 Webview 에 의해서 보여지는 웹 컨텐츠의 경우에는 위에서 설명된 Native 화면과는 다른 방식으로 동작하기 때문에, 별도의 분석 코드 적용이 필요합니다. 분석 대상 앱이 만약 Hybrid 앱인 경우에는 아래의 코드를 참고하여 웹 컨텐츠도 분석할 수 있도록 적용을 해야합니다.
+Hybrid 앱의 경우 앱 내에서 WebView 를 사용하여 웹 컨텐츠를 서비스 하기도 합니다. 이와 같이 Webview 에 의해서 보여지는 웹 컨텐츠의 경우에는 위에서 설명된 Native 화면과는 다른 방식으로 동작하기 때문에, 별도의 분석 코드 적용이 필요합니다. 분석 대상 앱이 만약 Hybrid 앱인 경우에는 아래의 코드를 참고하여 웹 컨텐츠도 분석할 수 있도록 적용을 해야합니다
+ 
+앱내에서 사용할 WebView 의 Delegate 함수에 아래와 같이 분석코드를 적용합니다
 
-```java
-@Override
-protected void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+- UIWebView를 사용할 경우 적용할 분석코드
 
-    WebView webView = findViewById(R.id.web_view);
-    webView.setWebViewClient(new WebViewClient() { 
-        @Override
-        public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            super.onPageStarted(view, url, favicon);
-            DOT.onStartWebPage(); // 추가
-        }
-        @Override
-        public void onPageFinished(WebView view, String url) {
-            super.onPageFinished(view, url);
-            DOT.onFinishWebPage(); // 추가
-        }
-    });
-    DOT.setWebView(webView); // 추가
+```objective-c
+@property (nonatomic) BOOL webLoaded;
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    if(self.webLoaded) {  
+        [DOT onStartWebPage];
+    }
+    self.webLoaded = NO;
+    if ([[[request URL] absoluteString] hasPrefix:@"jscall-dot:"]) {
+        [DOT setWebView:webView reqeust:request];
+        return NO;
+    }
+    return YES;
+} 
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    if(webView.isLoading) {
+        return;
+    }
+    self.webLoaded = YES;
 }
 
-@Override
-protected void onResume() {
-    super.onResume();
-    DOT.onReStartWebView(this); // 추가
+- (void)viewDidLoad:(BOOL)animated{
+    [super viewDidLoad];
+    self.webLoaded = NO;
 }
 ```
-***WebView를 사용하는 Activity 에서 적용할 분석코드***
 
- 
+- WKWebView를 사용할 경우 적용할 분석코드
+```
+@property (nonatomic) BOOL webLoaded;
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    if(self.webLoading) {
+        [DOT onStartWebPage];
+    }
+    self.webLoaded = NO; 
+    NSURLRequest *request = navigationAction.request;
+    decisionHandler(WKNavigationActionPolicyAllow);
+    if ([[[request URL] absoluteString] hasPrefix:@"jscall-dot:"]) {
+        [DOT setWkWebView:webView reqeust:request];
+    }
+}
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    if(webView.isLoading) {
+        return;
+    }
+    self.webLoading = YES;
+}
+- (void)viewDidLoad:(BOOL)animated{
+    [super viewDidLoad];
+    self.webLoaded = NO;
+}
+```
+
 ### <a id="DOT_ROUTE"></a> 유입 경로 분석
 
 #### - 앱 설치 경로 분석
-앱이 설치된 경로를 분석하는 시점은, 앱이 설치후 처음 실행될때 설치 경로를 획득하게 됩니다.
-이에 대한 처리는 기본적으로 위에서 설명된 SDK 필수 적용 사항이 적용된 상태에서는 자동으로 처리가 되기 때문에, 별도의 분석코드 적용이 필요하지 않습니다.
-
-분석 대상 앱의 특별한 이유에 의해서 SDK가 자동으로 수신한 유입 경로를 사용하지 않고 분석 대상 앱이 수신한 유입경로를 사용하고자 하는 경우에는 AndroidManifest.xml 파일에 다음과 같은 설정을 추가합니다.
-
+앱이 설치된 경로를 분석하는 시점은, 앱이 설치후 처음 실행될때 설치 경로를 획득하게 됩니다
+이에 대한 처리는 기본적으로 위에서 설명된 SDK 필수 적용 사항이 적용된 상태에서는 자동으로 처리가 되기 때문에, 별도의 분석코드 적용이 필요하지 않습니다
+다만, 앱의 특별한 상황에 의해서 앱에서 수신된 설치 경로 정보를 SDK에 직접 설정하고자 하는 경우에는 다음의 코드를 사용하세요
+ 
+AppDelegate 정의 항목중 didFinishLaunchingWithOptions 함수 정의에서 파라미터로 전달받은 launchOptions 로 부터 설치 경로를 직접 획득후, 
+수신된 값을 setInstallReferrer() 함수를 사용해서 SDK로 전달할 수 있습니다
+다만, 주의할 사항은 아래와 같이 직접 앱 설치 경로를 SDK에 설정하는 경우,
+해당 코드가 매 실행 시점마다 반복해서 실행되지 않고 앱 설치후 최초 1회만 동작하도록 적용되어야 합니다 
+또한, 아래의 코드는 반드시 SDK initialization() 함수 호출 이후 에 적용되어야 합니다
  ```xml
- <meta-data android:name="disableDotReceiver" android:value="true" />
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { 
+    NSURL *referrer = [launchOptions valueForKey:UIApplicationLaunchOptionsURLKey];  
+    if (referrer){
+        [DOT setInstallReferrer:referrer]; 
+    } 
+}
 ```
 
 앱에서 Receiver를 수신하는 onReceive() 메소드에서 설치 경로에 대한 정보를 직접 수신후, 수신된 값을 setInstallReferrer() 메소드를 사용해서 SDK로 전달할 수 있습니다. 이때 아래의 예시와 같이 didReceive boolean 변수를 사용하시면 설치 경로에 대한 데이터 중복 처리가 되는 예외 사항을 피할 수 있습니다.
