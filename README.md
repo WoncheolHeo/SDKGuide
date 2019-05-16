@@ -61,7 +61,7 @@ Wisetracker Mobile Analytics SDK 다운로드 받기
 
 ##### <a id="DOT_infoplist"></a> - SDK 세팅
 XCode 프로젝트의 info.plist 파일에 제공받은 App Analytics Key 정보를 추가합니다
-info.plist 파일을 open할때 list로 보기 가 아니라 source로 보기를 선탁하신뒤, 제공받으신 Key를 Ctrl+V 하시면 됩니다
+info.plist 파일을 open할때 'Property list'가 아니라 'Source Code'로 open한 후, 제공받으신 Key를 Ctrl+V 하면 됩니다
 제공받은 Key값은 아래의 예시와 같이 xml 형태를 가지고 있는 데이터 입니다
 ```xml
 <key>dotAuthorizationKey</key>
