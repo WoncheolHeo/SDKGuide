@@ -15,7 +15,7 @@
 		* [앱 설치 경로 분석](./README.md#--앱-설치-경로-분석)
 		* [외부 유입 경로 분석 (Deeplink)](./README.md#--외부-유입-경로-분석-(Deeplink))
 		* [푸시 메시지 분석](./README.md#--푸시-메시지-분석)
-	* [고급 컨텐츠 분석](./README.md#--고급-컨텐츠-분석-(optional))
+	* [고급 컨텐츠 분석](./README.md#DOT_ADVANCE)
 		* [로그인 분석](./README.md#DOT_USER)
 		* [in-App 분석](./README.md#in-App-분석)
 		* [Micro Conversion 분석](./README.md#Micro-Conversion-분석)
@@ -283,7 +283,7 @@ iOS에서 제공하는 Universal Link분석을 위해 universal link로 진입 d
 }
 ```
 
-### 고급 컨텐츠 분석 (optional)
+### <a id="DOT_ADVANCE"></a>고급 컨텐츠 분석 (optional)
 
 in-App 에서 발생하는 다양한 이벤트를 분석하기 위해서는 분석 대상 앱에서 해당 이벤트가 발생된 시점에, SDK에게 해당 정보를 전달해야 합니다.
 이어지는 내용에서는 주요 이벤트들의 분석 방법에 대해서 자세하게 설명합니다.
