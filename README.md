@@ -83,16 +83,25 @@ info.plist 파일을 open할때 'Property list'가 아니라 'Source Code'로 op
 </dict>
 ```
 
-### <a id="DOT_BAS"></a> 기본 분석 적용
+http통신을 허용하기 위해 NSAppTransportSecurity 를 아래와 같이 추가합니다
 
-#### <a id="DOT_INIT"></a> - SDK init
-Android 프로젝트 MainActivity의 onCreate(Bundle savedInstanceState) 메소드에서 SDK Initialization 메소드 추가
+```xml
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+</dict>
+```
 
-```java
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    DOT.initialization(this); // 추가
+### <a id="DOT_BAS"></a> 기본 분석 적용(required)
+
+#### <a id="DOT_INIT"></a> - SDK initialization
+XCode 프로젝트의 AppDelegate 가 정의된 클래스의 **didFinishLaunchingWithOptions ** 함수에 SDK를 Initialization하기 위한 코드를 다음과 같이 적용합니다
+
+```objective-c
+#import <DOT/DOT.h>
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [DOT initialization];
 }
 ```
 
