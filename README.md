@@ -655,7 +655,7 @@ Purchase 분석과 관련되어 제공되는 분석 항목은 다음과 같습�
 |Class 이름|Method 이름|파라미터|
 |:--:|:--:|:--:|
 |Purchase|setOrderNumber(value)|구매 이벤트에 대한 통합 주문번호 값을 전달|
-|Purchase|setCurrency(value)|결재된 금액의 화폐 기준을 전달|
+|Purchase|setCurrency(value)|결제된 금액의 화폐 기준을 전달|
 |Product|setFirstCategory(value)|상품 카테고리(대) 값을 전달|
 |Product|setSecondCategory(value)|상품 카테고리(중) 값을 전달|
 |Product|setThirdCategory(value)|상품 카테고리(소) 값을 전달|
