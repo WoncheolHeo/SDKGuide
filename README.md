@@ -15,11 +15,10 @@
 		* [앱 설치 경로 분석](./README.md#--앱-설치-경로-분석)
 		* [외부 유입 경로 분석 (Deeplink)](./README.md#--외부-유입-경로-분석-(Deeplink))
 		* [푸시 메시지 분석](./README.md#--푸시-메시지-분석)
-	* [고급 컨텐츠 분석](./README.md#고급-컨텐츠-분석)
-		* [회원 분석](./README.md#DOT_USER)
-		* [Page 분석](./README.md#Page-분석)
-		* [Click 분석](./README.md#Click-분석)
-		* [Conversion 분석](./README.md#Conversion-분석)
+	* [고급 컨텐츠 분석](./README.md#고급-컨텐츠-분석-(optional))
+		* [로그인 분석](./README.md#DOT_USER)
+		* [in-App 분석](./README.md#in-App-분석)
+		* [Micro Conversion 분석](./README.md#Micro-Conversion-분석)
 		* [Purchase 분석](./README.md#Purchase-분석)   
 		
 # DOT
