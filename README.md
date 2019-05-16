@@ -43,7 +43,7 @@
 ### <a id="DOT_INSTALL"></a> SDK 다운로드 및 설치
 
 ##### <a id="DOT_SDK_DOWNLOAD"></a> - SDK 다운로드
-###### XCode CocoaPad 환경에서 SDK 다운로드 방법
+- XCode CocoaPad 환경에서 SDK 다운로드 방법
 XCode 프로젝트 파일중 Podfile 파일에 다음과 같이 SDK를 추가합니다
 
 ```
@@ -105,28 +105,30 @@ XCode 프로젝트의 AppDelegate 가 정의된 클래스의 **didFinishLaunchin
 }
 ```
 
+DOT가 사용되는 곳에서는 #import <DOT/DOT.h>을 통해 import가 필요합니다. 
+이하 적용 예시에서는 가독성을 위해 import하는 부분이 생략되어 있습니다.
+
 #### - 방문 및 페이지 분석
-앱의 실행 및 페이지 분석을 위해서는 각 화면의 진입(**onResume()**)과 퇴장(**onStop()**)시 호출되는 메소드에 다음과 같은 코드 적용
+앱의 실행 및 페이지 분석을 위해서는 각 화면의 이동시에 호출되는 Callback 함수에 다음과 같은 코드의 적용이 필요합니다
+아래의 2가지 코드를 적용후에는 기본적으로 분석되는 범위는 대략적으로 다음과 같습니다
 
-```java
-@Override
-protected void onResume() {
-    super.onResume(); 
-    DOT.onStartPage(this);
-}
-
-@Override
-protected void onStop() {
-    super.onStop();
-    DOT.onStopPage(this);
-}
-```
-
-위의 2가지 코드를 적용후에는 기본적으로 분석되는 범위는 대략적으로 다음과 같습니다.
 - 앱 실행 및 방문수, 일/주/월순수방문수 등 방문과 관련된 지표
 - 페이지뷰, 페이지 체류시간
 - 통신사, 단말기, 국가 등 방문자의 단말기 환경으로 부터 추출될 수 있는 지표
+ 
+XCode 프로젝트의 각 View 화면별 viewWillAppear() 함수와 viewWillDisppear() 함수에 다음과 같이 기본 적인 페이지 트래픽 분석을 위한 코드를 적용합니다.
 
+```objective-c
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [DOT onStartPage];
+}
+
+- (void)viewWillDisppear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [DOT onStopPage];
+} 
+```
 
 ### <a id="DOT_HYBRID"></a> Hybrid 앱 분석 방법
 Hybrid 앱의 경우 앱 내에서 WebView 를 사용하여 웹 컨텐츠를 서비스 하기도 합니다. 이와 같이 Webview 에 의해서 보여지는 웹 컨텐츠의 경우에는 위에서 설명된 Native 화면과는 다른 방식으로 동작하기 때문에, 별도의 분석 코드 적용이 필요합니다. 분석 대상 앱이 만약 Hybrid 앱인 경우에는 아래의 코드를 참고하여 웹 컨텐츠도 분석할 수 있도록 적용을 해야합니다.
