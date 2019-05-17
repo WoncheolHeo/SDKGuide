@@ -13,7 +13,8 @@
 	* [Hybrid 앱 분석 방법](./README.md#DOT_HYBRID)
 	* [유입 경로 분석](./README.md#DOT_ROUTE)
 		* [앱 설치 경로 분석](./README.md#--앱-설치-경로-분석)
-		* [외부 유입 경로 분석 (Deeplink)](./README.md#--외부-유입-경로-분석-(Deeplink))
+		* [외부 유입 경로 분석 (Deeplink)](./README.md#DOT_DEEPLINK))
+		* [Facebook 분석](./README.md#--Facebook 분석))
 		* [푸시 메시지 분석](./README.md#--푸시-메시지-분석)
 	* [고급 컨텐츠 분석](./README.md#DOT_ADVANCE)
 		* [로그인 분석](./README.md#DOT_USER)
@@ -198,7 +199,7 @@ AppDelegate 정의 항목중 didFinishLaunchingWithOptions 함수 정의에서 �
 }
 ```
 
-#### - 외부 유입 경로 분석 (Deeplink)
+#### <a id="DOT_DEEPLINK"></a> - 외부 유입 경로 분석 (Deeplink)
 앱이 설치된 이후 DeepLink를 통해서 앱이 실행되는 경로 분석이 필요한 경우 아래와 같이 setDeepLink() 함수를 사용하면 분석이 가능합니다.
 
 ```objective-c
@@ -231,6 +232,7 @@ cmd> pod install
 
 
 - FBSDK 설치 방법
+
 a. info.plist 파일을 'Source Code'로 오픈합니다
 b. 이름 속성 아래에 포함된 내용중 [APP_ID] 와 [APP_NAME] 부분을 Facebook Developer Site 에서 제공하는 값으로 치환후 info.plist 파일에 저장합니다.
 
