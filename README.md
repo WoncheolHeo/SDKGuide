@@ -212,6 +212,7 @@ AppDelegate 정의 항목중 didFinishLaunchingWithOptions 함수 정의에서 �
 Facebook 앱에서 유입되는 설치수를 분석하기 위해서는 Facebook에서 제공하는 SDK가 분석 대상 앱에 설치가 선행되어야 합니다
  
 - FBSDK 다운로드 방법
+
 a. XCode 프로젝트 파일중 Podfile 파일에 다음과 같이 SDK를 추가합니다.
 
 ```xml
