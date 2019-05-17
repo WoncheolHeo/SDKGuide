@@ -14,7 +14,7 @@
 	* [유입 경로 분석](./README.md#DOT_ROUTE)
 		* [앱 설치 경로 분석](./README.md#--앱-설치-경로-분석)
 		* [외부 유입 경로 분석 (Deeplink)](./README.md#DOT_DEEPLINK))
-		* [Facebook 분석](./README.md#--Facebook 분석)
+		* [Facebook 분석](./README.md#--Facebook-분석)
 		* [푸시 메시지 분석](./README.md#--푸시-메시지-분석)
 	* [고급 컨텐츠 분석](./README.md#DOT_ADVANCE)
 		* [로그인 분석](./README.md#DOT_USER)
