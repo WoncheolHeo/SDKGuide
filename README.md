@@ -22,7 +22,7 @@
 		* [Micro Conversion 분석](./README.md#Micro-Conversion-분석)
 		* [Purchase 분석](./README.md#Purchase-분석)   
 		
-# DOT
+# DOT(Objective-c)
 
 ### <a id="DOT_INSTALL"></a> SDK 다운로드 및 설치
 
