@@ -31,12 +31,13 @@
 XCode 프로젝트 파일중 Podfile 파일에 다음과 같이 SDK를 추가합니다.
 
 ```
-pod 'DOT' ~> 'x.x.x'
+pod 'DOT'
 ```
 
-Podfile 에 해당라인을 추가한 후 Terminal 프로그램을 실행하여 다음의 명령을 수행합니다.
+기존에 SDK를 한번 설치한 경우에는 설치할 SDK 버전을 표시해야 하는 경우도 있습니다. 아래와 같이 설치할 SDK버전을 명시적으로 표시하면 됩니다.
+
 ```
-cmd> pod install
+pod 'DOT', '~> 1.0.3'
 ```
 
 만약 Cocoapad 환경의 프로젝트가 아닌 경우에는, 아래의 Github 링크에서 SDK Library 파일을 다운로드 가능합니다.
